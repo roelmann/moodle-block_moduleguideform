@@ -6,9 +6,9 @@ class block_modguideform extends block_base {
 
     public function applicable_formats() {
         return array(
-            'all' => true,
-            'mod' => false,
-            'my' => false);
+            'course' => true,
+            'mod' => false
+            );
     }
 
     public function instance_allow_multiple() {
