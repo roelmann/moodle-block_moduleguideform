@@ -21,11 +21,11 @@ class modguideform_form extends moodleform {
 
         $mform->addElement('htmleditor', 'modaddinfo', get_string('modaddinfo', 'block_modguideform'));
         $mform->setType('modaddinfo', PARAM_RAW);
-        $mform->addRule('modaddinfo', null, 'required', null, 'client');
+//        $mform->addRule('modaddinfo', null, 'required', null, 'client');
 
         $mform->addElement('htmleditor', 'modreslist', get_string('modreslist', 'block_modguideform'));
         $mform->setType('modreslist', PARAM_RAW);
-        $mform->addRule('modreslist', null, 'required', null, 'client');
+//        $mform->addRule('modreslist', null, 'required', null, 'client');
 
         // hidden elements
         $mform->addElement('hidden', 'blockid');

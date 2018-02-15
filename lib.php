@@ -8,10 +8,17 @@ function block_modguideform_images() {
 function block_modguideform_print_page($modguideform, $return = false) {
     global $OUTPUT, $COURSE;
     $display = $OUTPUT->heading($modguideform->modulecode);
+    $display .= 'To edit the content below, make sure editing is turned on for the module, then click the cog icon in the Module Guide Content Form block on your module management page.<br>';
+    $display .= '<p><br></p>';
     $display .= $OUTPUT->box_start();
 
+    $display .= '<h4>Module Introduction</h4>';
     $display .= clean_text($modguideform->modintro);
+    $display .= '<p><br></p>';
+    $display .= '<h4>Module Additional Information</h4>';
     $display .= clean_text($modguideform->modaddinfo);
+    $display .= '<p><br></p>';
+    $display .= '<h4>Module Resources</h4>';
     $display .= clean_text($modguideform->modreslist);
 
     $display .= $OUTPUT->box_end();

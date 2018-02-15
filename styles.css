@@ -1,0 +1,9 @@
+.path-blocks-modguideform .fcontainer label {
+    font-size:120%;
+    font-weight:700;
+    margin-top:1.5em;
+}
+.editing .block_modguideform.block_with_controls ul li a {
+    font-size:150%;
+    padding-right:1em;
+}

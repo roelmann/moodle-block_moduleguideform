@@ -7,6 +7,7 @@ class block_modguideform extends block_base {
     public function applicable_formats() {
         return array(
             'all' => false,
+            'blocks' => false,
             'course-view' => true,
             );
     }
@@ -25,16 +26,19 @@ class block_modguideform extends block_base {
         if ($this->content !== null) {
         return $this->content;
         }
+        global $COURSE, $DB, $PAGE;
 
         $this->content         =  new stdClass;
         $this->content->text   = 'The content of our modguideform block!';
-        global $COURSE, $DB, $PAGE;
+        $url = new moodle_url('/blocks/modguideform/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        $this->content->footer = html_writer::link($url, get_string('addpage', 'block_modguideform'));
+
 
         if (!empty($this->config->text)) {
             $this->content->text = $this->config->text;
         }
 
-
+        $mc = substr($COURSE->idnumber, 0, 6);
         $context = context_course::instance($COURSE->id);
 
         if (has_capability('block/modguideform:managepages', $context)) {
@@ -49,7 +53,7 @@ class block_modguideform extends block_base {
         $canview = has_capability('block/modguideform:viewpages', $context);
 
         // This is the new code.
-        if ($modguideformpages = $DB->get_records('block_modguideform', array('blockid' => $this->instance->id))) {
+        if ($modguideformpages = $DB->get_records('block_modguideform', array('blockid' => $this->instance->id, 'modulecode' => $mc))) {
             $this->content->footer = ''; // Remove Add info link if already exists
             $this->content->text .= html_writer::start_tag('ul');
             foreach ($modguideformpages as $modguideformpage) {
@@ -84,22 +88,24 @@ class block_modguideform extends block_base {
 
         // The other code.
         $url = new moodle_url('/blocks/modguideform/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
-//        $this->content->footer = html_writer::link($url, get_string('addpage', 'block_modguideform'));
         return $this->content;
     }
 
     public function specialization() {
-        if (isset($this->config)) {
-            if (empty($this->config->title)) {
-                $this->title = get_string('defaulttitle', 'block_modguideform');
-            } else {
-                $this->title = $this->config->title;
-            }
+//        if (isset($this->config)) {
+//            if (empty($this->config->title)) {
+//                $this->title = get_string('defaulttitle', 'block_modguideform');
+//            } else {
+//                $this->title = $this->config->title;
+//            }
 
-            if (empty($this->config->text)) {
-                $this->config->text = get_string('defaulttext', 'block_modguideform');
-            }
-        }
+//            if (empty($this->config->text)) {
+//                $this->config->text = get_string('defaulttext', 'block_modguideform');
+//            }
+//        }
+        $this->title = get_string('blocktitle', 'block_modguideform');
+        $this->config->text = get_string('blockstring', 'block_modguideform');
+
     }
 
     public function instance_config_save($data,$nolongerused = false) {

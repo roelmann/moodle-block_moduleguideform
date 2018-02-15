@@ -4,8 +4,8 @@ $string['modguideform'] = 'Module Guide Content';
 $string['addinstance'] = 'Add a new Module Guide Content form block';
 $string['myaddinstance'] = 'not for MY';
 
-$string['blocktitle'] = 'Sample title string';
-$string['blockstring'] = 'Sample block content string';
+$string['blocktitle'] = 'Module Guide Content Form';
+$string['blockstring'] = 'Add your module specific content here - Introduction, Additional Information and Resources sections are available.';
 
 $string['headerconfig'] = 'Header config';
 $string['descconfig'] = 'Config description';
